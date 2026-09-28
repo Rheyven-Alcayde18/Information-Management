@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ITEC 205 Information Management Reviewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#1f2937;--mute:#667085;--line:#e2e5ea;--acc:#2563eb;--tint:#e8effd;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1a1f26;--ink:#e8ebf0;--mute:#98a2b3;--line:#2c333d;--acc:#6b9bff;--tint:#1f2a40;--on:#111418}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1a1f26;--ink:#e8ebf0;--mute:#98a2b3;--line:#2c333d;--acc:#6b9bff;--tint:#1f2a40;--on:#111418}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Figtree",system-ui,sans-serif}
+header{padding:32px 20px 20px}
+header div{max-width:760px;margin:auto}
+h1{margin:0 0 6px;font-size:1.7rem;line-height:1.2;font-weight:700}
+header p{margin:0;color:var(--mute)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 20px}
+.bar div{max-width:760px;margin:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+input[type=search],select{padding:9px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+input[type=search]{flex:1;min-width:160px}select{max-width:100%}
+input[type=checkbox]{accent-color:var(--acc)}
+button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--acc)}
+button:disabled{cursor:default}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#prog{font-size:.9rem;color:var(--mute)}
+main{max-width:760px;margin:auto;padding:20px 20px 70px}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 10px}
+summary{cursor:pointer;padding:14px 16px;font-weight:700;list-style:none;display:flex;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"+";color:var(--acc);font-size:1.3rem;width:1rem}
+details[open] summary:before{content:"–"}
+summary .t{flex:1}
+.done summary .t:after{content:" ✓";color:var(--acc)}
+.body{padding:2px 18px 16px;border-top:1px solid var(--line)}
+.body p{margin:12px 0 0}
+.body b{display:block;color:var(--acc)}
+ul,ol{margin:10px 0 0;padding-left:1.4rem}li{margin:3px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.chip{background:var(--tint);color:var(--acc);padding:2px 10px;border-radius:99px;font-weight:700}
+.ar{color:var(--mute)}
+.mark{margin-top:14px;display:flex;gap:8px;align-items:center;color:var(--mute);font-size:.95rem}
+h2{margin:30px 0 10px;font-size:1.25rem}
+.q{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:0 0 6px}
+.q input{margin-top:6px}.q.on span{color:var(--mute);text-decoration:line-through}
+.hide{display:none}
+#tools{display:contents}#tools.hide{display:none}
+.tabs{width:100%;display:flex;gap:6px}.tab{flex:1;font-weight:700}
+.tab.on{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.fc{min-height:250px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:10px;cursor:pointer;text-align:center;white-space:pre-line}
+.fc.back{border-color:var(--acc);text-align:left}
+.fc small{color:var(--mute)}.fc .term{font-size:1.5rem;font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;justify-content:center;align-items:center}
+.opt{display:block;width:100%;text-align:left;margin:0 0 8px;padding:12px}
+.opt.ok{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.opt.no{border-color:var(--mute);color:var(--mute);text-decoration:line-through}
+.miss{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px}
+</style>
+</head>
+<body>
+<header><div><h1>ITEC 205 – Information Management Reviewer</h1><p>Read the reviewer, drill with flashcards, then test yourself with a quiz.</p></div></header>
+<div class="bar"><div>
+<div class="tabs"><button class="tab on" data-v="rev">Reviewer</button><button class="tab" data-v="fc">Flashcards</button><button class="tab" data-v="qz">Quiz</button></div>
+<span id="tools">
+<input type="search" id="s" placeholder="Search a topic or word" aria-label="Search">
+<span id="prog"></span>
+<button id="all">Open all</button><button id="none">Close all</button>
+</span>
+</div></div>
+<main>
+<div id="v-rev">
+<div id="secs"></div>
+<h2>Quick memorization sheet</h2><div id="quick"></div>
+<h2>Practice questions</h2><p style="color:var(--mute);margin:0 0 10px">Tick a question once you can answer it.</p><div id="qs"></div>
+</div>
+<div id="v-fc" class="hide"></div>
+<div id="v-qz" class="hide"></div>
+</main>
+<script>
+const S=[
+["Information Management (IM)",[["Definition","Information Management (IM) is the process of acquiring, using, accessing, and sharing information within an organization."],["Main Aim","To bring together information from different sources and levels to meet business goals."],["Components"],"Technology infrastructure","Management processes and services","Policies",["Why Study IM"],"Controls creation of records","Ensures regulatory compliance","Reduces operating costs","Adopts new technologies","Improves productivity and efficiency","Reduces risks","Protects proprietary information and preserves corporate memory"]],
+["Purpose, Goals, and Tasks of IM",[["Purpose","Understanding key metrics across business planning, tactics, content management, and daily operations."],["Goals and Objectives","Increased efficiency; better situational awareness; more transparency; stronger security and compliance; improved customer satisfaction; lower costs; better collaboration."],["Tasks and Methods"],"Analyze information requirements","Check sources of information","Design information flows","Ensure information quality","Track and document exchanges","Ensure availability","Keep data up to date"],1,
+[["Applications","Data-driven decision making; improved operational efficiency; business intelligence; customer relationship management; compliance and risk management; knowledge sharing and collaboration; digital transformation."]]],
+["Data, Information, and Knowledge",[["Data","Raw facts. A set of symbols (text, visual, audio) that may or may not have meaning on their own."],["Information","Data with meaning, usually placed in context."],["Knowledge","Information in context, plus the experience and insight of people who understand its real value. It only has value when acted on."],["Relationship","Data is the building block for information; information is the building block for knowledge. Knowledge helps create information from data. New data changes information; new information changes knowledge."]]],
+["The 4 Cs of Information Transformation",["Context","Calculation","Classification (or categorization)","Condensation"],1],
+["Levels of Information",[["Strategic","Long-range planning and direction of the business. Used by top management. Example: Should a new branch be opened?"],["Tactical","Short-range decisions to run the business. Used by middle management. Example: How to rate vendors or how much stock is needed."],["Operational","Daily operations. Used by line/front-line managers. Example: List of items to reorder or daily ledger accounts."]]],
+["Qualities of Information",[["Utility of Information"],["Form Utility","value increases if the format matches the decision maker's needs."],["Time Utility","value increases if information arrives when needed."],["Place Utility","value increases if information is accessible at the right place."],["Satisfaction Level","If the three utilities above are met, the user is satisfied, and this determines quality."]]],
+["Characteristics of Information",[["Accuracy","Information must be correct, reliable, and free from errors or distortions."],["Relevance","Information should directly relate to the problem or purpose at hand."],["Timeliness","Information must be up-to-date and available when needed."],["Completeness","Information should provide all necessary details for understanding and decision-making."],["Accessibility","Information must be easily retrievable and available to those who need it."],["Reliability and Objectivity","Information should come from trustworthy sources and be free from bias or personal opinion."],["Conciseness and Cost Effectiveness","Information should be brief yet comprehensive."]]],
+["Information Lifecycle Model",[["","Capture → Organize → Process → Maintain → Destroy"]]],
+["Information Systems (IS)",[["Definition","An information system is a set of interrelated parts that collect, process, store, and distribute information to support decision-making and control in an organization. It combines users, hardware, software, communication networks, and data."],["Digital Firm","Nearly all significant business relationships with customers, suppliers, and employees are digitally enabled. Key assets are managed digitally, and information is available anywhere, anytime in the firm."],["Strategic Business Objectives","Operational excellence; new products/services/business models; customer and supplier intimacy; improved decision making; competitive advantage; survival."],["IS Roles","Supports business operations; supports managerial decision-making; supports strategic competitive advantage."]]],
+["Structure of an Information System",[["Physical Components","Hardware, software, database, procedures, people."],["Processing Functions","Process transactions; maintain files; produce reports; process inquiries."],["Output to the User","Status reports; confirmation or correction of previous knowledge; surprise elements."],["Other Functions","Analysis; prediction/forecasts; optimization."],["Frequency","Regular, on-demand, exception, and ad hoc reports."]]],
+["Types of Information Systems",[["Management Support Systems","Help managers decide and plan."],["MIS – Management Information System","Generates information for decision-making at all levels."],["DSS – Decision Support System","Supports middle and top management in making decisions that aren't easy to predefine."],["ESS – Executive Support System","Helps top management decide by combining MIS and DSS data."],["OAS – Office Automation System","Digital tools that replace manual office tasks, including data storage, transfer, real-time collaboration, workflow automation, and integration."],["TPS – Transaction Processing System","Handles real-time transactions at the operational level."],["PCS – Process Control System","Computers automatically adjust a physical production process."],["ECS – Enterprise Collaboration System","Integrated tools for communication and collaboration across a large organization."]]],
+["Five Classical Functions of Managers",["Planning","Organizing","Coordinating","Deciding","Controlling"],1],
+["Classical vs. Behavioral Models",[["Classical Model","Describes formal functions but not exactly what managers do day to day."],["Behavioral Model","Real manager behavior is less systematic, more informal, and more reactive."]]],
+["Five Attributes of Managerial Behavior",["Managers work at an unrelenting pace.","Managerial activities are fragmented.","Managers prefer current, specific, ad hoc information.","Managers prefer oral communication over written.","Managers prioritize a wide network of contacts."],1],
+["Managerial Roles",[["Interpersonal","Leader, liaison, provides time/favors."],["Informational","Nerve center, disseminator, spokesperson."],["Decisional","Entrepreneur, handles disturbances, allocates resources, negotiator."]]],
+["Real-World Decision-Making Challenges",[["Information Quality","Issues with accuracy, timeliness, completeness, and consistency."],["Management Filters","Managers absorb information selectively; may be poor at assessing risk; may rely on intuition over data."],["Organizational Culture","Shared values and beliefs shape decisions. Challenges include resistance to change, communication norms, and trust in technology."]]],
+["Organizational Hierarchy",[["Senior Management (top)"],["Middle Management","scientists and knowledge workers"],["Operational Management","production/service and data workers (bottom)"],["Management's Job","Make sense of situations, decide, plan action, and use IT to create new products/services and redesign the organization."],["Examples"],["Apple","new product (iPhone), service innovation (App Store), organizational shift to consumer electronics/digital services."],["Netflix","product evolution (DVD to streaming), service reinvention (original content), organizational transformation (new structure and partnerships)."]]],
+["Decision Making",[["Four Steps"],"Identify the problem","Diagnose the problem","Identify the alternatives","Select the best alternative"],1,
+[["Methods","Past experience; trial and error; going by the book; tradition; logical reasoning; random choice."]]],
+["Levels of Decision Making",[["Strategic","Top management sets objectives, policies, and future direction."],["Management Control","Middle/tactical management executes strategic decisions; responsible for the 3Ms: man, machine, material."],["Operational Control","Front-line managers carry out tasks and track performance against standards."]]],
+["MIS Support for Decision Making",[["","Intelligence → Design → Choice"]]],
+["Types of Decisions",[["Structured/Programmable","Routine, repetitive, with a clear procedure. Example: TPS. Needs clear input procedures, validation, and useful output."],["Unstructured/Nonprogrammable","New or highly changeable situations with no fixed procedure; the decision maker relies on judgment and insight."]]],
+["AI Technologies in Business",[["Objective","Develop computers that can think, see, hear, talk, and feel like a human, using reasoning and learning from experience."],["Neural Networks","Based on the brain's mesh-like network of neurons; a widely accepted AI application."],["Fuzzy Logic","Based on human reasoning using approximation of values and inferences."],["Virtual Reality","Aims for a more natural, realistic human-computer interface. Needs multisensory input/output devices such as video goggles and stereo earphones."]]]
+];
+const Q=[["Information Management","Acquire → Use → Access → Share"],["Data Hierarchy","Data → Information → Knowledge"],["4 Cs","Context → Calculation → Classification → Condensation"],["Information Levels","Strategic → Tactical → Operational"],["Information Lifecycle","Capture → Organize → Process → Maintain → Destroy"],["Management Functions","Planning → Organizing → Coordinating → Deciding → Controlling"],["Managerial Roles","Interpersonal → Informational → Decisional"],["Decision Making","Identify → Diagnose → Alternatives → Select"],["MIS Decision Support","Intelligence → Design → Choice"],["Decision Types","Structured = Routine; Unstructured = Judgment"],["Management Levels","Strategic = Top; Tactical = Middle; Operational = Front-line"]];
+const P=["What is Information Management?","What are the three components of IM?","What is raw facts called?","What is data with meaning called?","What is information combined with experience and insight called?","What are the 4 Cs of Information Transformation?","What are the three levels of information?","What is the information lifecycle model?","What does MIS stand for?","What does DSS stand for?","What does ESS stand for?","What does TPS stand for?","What does OAS stand for?","What does PCS stand for?","What does ECS stand for?","What are the five classical functions of managers?","What are the three categories of managerial roles?","What are the four steps in decision-making?","What are the three levels of decision-making?","What are the two types of decisions?","What is the difference between data, information, and knowledge?","What is the difference between strategic, tactical, and operational information?","What is the difference between MIS, DSS, and ESS?","What is the difference between structured and unstructured decisions?","What are the three managerial role categories?","What are the challenges of real-world decision-making?","What is the purpose of an Information System?","What are the three roles of Information Systems?","What is a Digital Firm?","What are Neural Networks, Fuzzy Logic, and Virtual Reality?"];
+const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const flow=t=>t.includes(" → ")?'<div class="flow">'+t.split(" → ").map(x=>'<span class="chip">'+esc(x)+'</span>').join('<span class="ar">→</span>')+'</div>':esc(t);
+function render(items,ord){let h="",l=[];const fl=()=>{if(l.length){h+=(ord?"<ol>":"<ul>")+l.join("")+(ord?"</ol>":"</ul>");l=[]}};
+for(const i of items){if(typeof i==="string"){l.push("<li>"+esc(i)+"</li>")}else{fl();const[a,b]=i;h+="<p>"+(a?"<b>"+esc(a)+"</b>":"")+(b?flow(b):"")+"</p>"}}fl();return h}
+const secs=document.getElementById("secs");let doneN=0;
+S.forEach((s,i)=>{const d=document.createElement("details");const parts=[];let ord=0,html="";
+for(let k=1;k<s.length;k++){if(Array.isArray(s[k])&&Array.isArray(s[k][0])||Array.isArray(s[k])&&typeof s[k][0]==="string"&&s[k].length>1&&!Array.isArray(s[k][1])&&s[k+1]===1){}}
+// group: [items], optional 1 (ordered flag), then more groups
+let k=1;while(k<s.length){const it=s[k];const o=s[k+1]===1;html+=render(it,o);k+=o?2:1}
+d.innerHTML='<summary><span class="t">'+(i+1)+". "+esc(s[0])+'</span></summary><div class="body">'+html+'<label class="mark"><input type="checkbox"> Mark as reviewed</label></div>';
+d.dataset.text=(s[0]+" "+d.textContent).toLowerCase();
+d.querySelector("input").onchange=e=>{d.classList.toggle("done",e.target.checked);prog()};
+secs.appendChild(d)});
+function prog(){const n=document.querySelectorAll("#secs .done").length;document.getElementById("prog").textContent=n+" of "+S.length+" reviewed"}prog();
+document.getElementById("quick").innerHTML=Q.map(q=>'<details open><summary><span class="t">'+esc(q[0])+'</span></summary><div class="body">'+flow(q[1])+'</div></details>').join("");
+document.getElementById("qs").innerHTML=P.map((q,i)=>'<label class="q"><input type="checkbox"><span>'+(i+1)+". "+esc(q)+'</span></label>').join("");
+document.querySelectorAll("#qs input").forEach(c=>c.onchange=()=>c.parentNode.classList.toggle("on",c.checked));
+const all=()=>document.querySelectorAll("#secs details");
+document.getElementById("all").onclick=()=>all().forEach(d=>d.open=true);
+document.getElementById("none").onclick=()=>all().forEach(d=>d.open=false);
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const $=id=>document.getElementById(id);
+const D=[];
+S.forEach((s,si)=>{let k=1;while(k<s.length){const it=s[k],o=s[k+1]===1;let head=s[0],l=[];
+const fl=()=>{if(l.length)D.push({si,s:s[0],t:"l",q:"List: "+head,a:l.map((x,j)=>(o?(j+1)+". ":"• ")+x).join("\n")});l=[]};
+for(const x of it){if(typeof x==="string")l.push(x);else if(!x[1]){fl();head=x[0]||s[0]}else D.push({si,s:s[0],t:"p",q:x[0]||s[0],a:x[1]})}
+fl();k+=o?2:1}});
+const V={rev:"v-rev",fc:"v-fc",qz:"v-qz"};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));for(const k in V)$(V[k]).classList.toggle("hide",k!==b.dataset.v);$("tools").classList.toggle("hide",b.dataset.v!=="rev")});
+/* Flashcards */
+let fs="all",fi=0,flip=0,hideK=false,deck=[];const known=new Set();
+$("v-fc").innerHTML='<div class="row"><select id="fsel" aria-label="Topic"><option value="all">All topics</option>'+S.map((s,i)=>'<option value="'+i+'">'+(i+1)+". "+esc(s[0])+'</option>').join("")+'</select><button id="fsh">Shuffle</button><label><input type="checkbox" id="fhk"> Hide cards I know</label></div><div id="fcc" class="fc" tabindex="0" role="button" aria-label="Flip card"></div><div class="row"><button id="fp">Previous</button><button id="ff">Flip</button><button id="fn">Next</button></div><div class="row"><button id="fno">Study again</button><button id="fyes">I know this</button></div><p id="fct" style="text-align:center;color:var(--mute)"></p>';
+function show(){const c=deck[fi],e=$("fcc");
+if(!c){e.className="fc";e.innerHTML="<b>No cards here. Untick “Hide cards I know” or pick another topic.</b>"}
+else{e.className="fc"+(flip?" back":"");e.innerHTML=flip?"<small>"+esc(c.q)+"</small><div>"+esc(c.a)+"</div>":"<small>"+esc(c.s)+'</small><div class="term">'+esc(c.q)+"</div><small>Tap to flip</small>"}
+$("fct").textContent=deck.length?"Card "+(fi+1)+" of "+deck.length+" · "+known.size+" of "+D.length+" known":""}
+function build(){deck=D.filter(c=>(fs==="all"||c.si==fs)&&!(hideK&&known.has(c)));if(fi>=deck.length)fi=0;flip=0;show()}
+const go=d=>{if(!deck.length)return;fi=(fi+d+deck.length)%deck.length;flip=0;show()};
+$("fsel").onchange=e=>{fs=e.target.value;fi=0;build()};
+$("fhk").onchange=e=>{hideK=e.target.checked;build()};
+$("fsh").onclick=()=>{build();deck=shuf(deck);fi=0;show()};
+$("fp").onclick=()=>go(-1);$("fn").onclick=()=>go(1);
+$("ff").onclick=$("fcc").onclick=()=>{if(deck.length){flip^=1;show()}};
+$("fcc").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip^=1;show()}};
+$("fyes").onclick=()=>{const c=deck[fi];if(!c)return;known.add(c);hideK?build():go(1)};
+$("fno").onclick=()=>{const c=deck[fi];if(!c)return;known.delete(c);go(1)};
+document.addEventListener("keydown",e=>{if($("v-fc").classList.contains("hide")||/INPUT|SELECT/.test(e.target.tagName))return;if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});
+build();
+/* Quiz */
+const qz=$("v-qz"),P2=D.filter(c=>c.t==="p");
+function qstart(){qz.innerHTML='<h2>Quiz</h2><p>Match each description to its term. Every question comes from your reviewer.</p><div class="row"><button data-n="10">10 questions</button><button data-n="20">20 questions</button><button data-n="'+P2.length+'">All '+P2.length+'</button></div>';qz.querySelectorAll("button").forEach(b=>b.onclick=()=>qrun(+b.dataset.n))}
+function qrun(n){
+const qs=shuf(P2).slice(0,n).map(c=>{const ot=shuf(P2.filter(x=>x.q!==c.q));const d=[];for(const x of [...ot.filter(x=>x.s===c.s),...ot.filter(x=>x.s!==c.s)]){if(d.length<3&&!d.includes(x.q))d.push(x.q)}return{c,o:shuf([c.q,...d])}});
+let i=0,sc=0;const miss=[];
+function step(){
+if(i>=qs.length){qz.innerHTML="<h2>You scored "+sc+" out of "+qs.length+"</h2>"+(miss.length?"<p>Review these:</p>"+miss.map(c=>'<div class="miss"><b>'+esc(c.q)+"</b> ("+esc(c.s)+")<br>"+esc(c.a)+"</div>").join(""):"<p>Perfect score. Nice work.</p>")+'<div class="row"><button id="qr">Try again</button></div>';$("qr").onclick=qstart;return}
+const{c,o}=qs[i];
+qz.innerHTML='<p style="color:var(--mute)">Question '+(i+1)+" of "+qs.length+" · Score "+sc+'</p><div class="fc" style="cursor:default"><small>From: '+esc(c.s)+"</small><div>Which term matches this?</div><b>"+esc(c.a)+'</b></div><div style="margin-top:12px">'+o.map(x=>'<button class="opt">'+esc(x)+"</button>").join("")+'</div><div id="fb" class="row"></div>';
+const bs=[...qz.querySelectorAll(".opt")];
+bs.forEach(b=>b.onclick=()=>{bs.forEach(x=>{x.disabled=true;if(x.textContent===c.q)x.classList.add("ok")});
+if(b.textContent===c.q)sc++;else{b.classList.add("no");miss.push(c)}
+$("fb").innerHTML='<button id="nx">'+(i+1<qs.length?"Next question":"See results")+"</button>";$("nx").onclick=()=>{i++;step()};$("nx").focus()});
+}
+step()}
+qstart();
+document.getElementById("s").oninput=e=>{const v=e.target.value.trim().toLowerCase();all().forEach(d=>{const m=!v||d.dataset.text.includes(v);d.classList.toggle("hide",!m);if(v&&m)d.open=true})};
+</script>
+</body>
+</html>
